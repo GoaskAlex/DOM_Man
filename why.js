@@ -70,30 +70,34 @@ let showingSubMenu = false;
 
 topMenuEl.addEventListener("click", function (element) {
   element.preventDefault();
-  let linkName = element.target;
-  let newText = linkName.textContent;
-  if (linkName.tagName === 'data') {
+  let targetLinkName = element.target;
+  let newText = targetLinkName.textContent;
+  if (targetLinkName.tagName === 'data') {
     // console.log(newText);
   
   };
 
-  if (linkName.classList.contains("active")) {
-    linkName.classList.remove("active");
+  if (targetLinkName.classList.contains("active")) {
+    targetLinkName.classList.remove("active");
     showingSubMenu = false;
     subMenuEl.style.top = "0";
     return
   }
 
-  topMenuLinks.forEach(function (element) {
+  for (const element of topMenuLinks) {
     element.classList.remove("active");
-  });
-  linkName.classList.add("active");
-  let subLinks
-  menuLinks.forEach(function (element) {
+  }
+  targetLinkName.classList.add("active");
+  
+  let subLinks ='';
+
+  for (const element of menuLinks) {
     if (element.text === newText && element.subLinks) {
       subLinks = element.subLinks;
+      break;
     }
-  });
+  }
+  
   if (subLinks) {
     showingSubMenu = true;
     buildSubMenu(subLinks);
