@@ -120,9 +120,9 @@ function buildSubMenu(array) {
 
 subMenuEl.addEventListener("click", function (element) {
   element.preventDefault();
-  let linkName = element.target;
+  let targetLinkName = element.target;
   // let newText = linkName.textContent;
-  if (linkName.tagName === 'data') {
+  if (targetLinkName.tagName === 'data') {
     //console.log(newText);
     showingSubMenu = false;
     subMenuEl.style.top = "0";
